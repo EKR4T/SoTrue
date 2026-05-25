@@ -1,0 +1,24 @@
+{
+  "name": "sotrue",
+  "version": "1.0.0",
+  "description": "Mini Solar System Simulator",
+  "keywords": [
+    "Solar",
+    "System"
+  ],
+  "homepage": "https://github.com/EKR4T/SoTrue#readme",
+  "bugs": {
+    "url": "https://github.com/EKR4T/SoTrue/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EKR4T/SoTrue.git"
+  },
+  "license": "ISC",
+  "author": "134976 Emmanuel Keter",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
