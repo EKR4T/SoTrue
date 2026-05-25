@@ -1,0 +1,381 @@
+/* =====================================================
+   MINI SOLAR SYSTEM SIMULATOR - STYLES
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000814 0%, #001d3d 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+    background: rgba(0, 8, 20, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(77, 175, 80, 0.3);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 0.95em;
+    color: #ff9800;
+    font-style: italic;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ===================== CANVAS STYLING ===================== */
+canvas {
+    border: 3px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #000814;
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.3),
+                inset 0 0 20px rgba(76, 175, 80, 0.1);
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Canvas wrapper + toolbar for minimal controls and fullscreen */
+.canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.canvas-wrap:fullscreen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.canvas-wrap canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.canvas-wrap canvas {
+    cursor: grab;
+}
+.canvas-wrap canvas:active {
+    cursor: grabbing;
+}
+
+.toolbar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 4;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+    backdrop-filter: blur(4px);
+}
+
+.icon-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: rgba(255,255,255,0.09);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.labels-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.labels-overlay .label {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.labels-overlay .moon-label {
+    background: rgba(10,10,10,0.55);
+    font-size: 11px;
+    padding: 4px 7px;
+}
+
+.labels-overlay .earth-label {
+    background: rgba(0,0,0,0.75);
+    color: #A8FF9A;
+    font-weight: 700;
+    padding: 6px 10px;
+    border: 1px solid rgba(168,255,154,0.12);
+}
+
+.labels-overlay .sun-label {
+    background: linear-gradient(90deg, rgba(255,200,80,0.12), rgba(255,240,160,0.06));
+    color: #FFD97A;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,217,122,0.08);
+}
+
+.labels-overlay .label {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: left 160ms ease, top 160ms ease, transform 160ms ease, opacity 160ms ease;
+    will-change: left, top, transform;
+}
+
+/* Tooltip specific */
+#tooltip {
+    transition: transform 100ms ease, opacity 120ms ease;
+    transform-origin: left top;
+    opacity: 0.98;
+    z-index: 6;
+}
+
+/* ===================== CONTROL PANEL ===================== */
+.control-panel {
+    width: 100%;
+    background: rgba(30, 40, 80, 0.6);
+    border: 2px solid #2196F3;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 2px solid;
+    border-radius: 5px;
+    font-size: 0.95em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: #000;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: #2196F3;
+    color: #2196F3;
+}
+
+.btn-secondary:hover {
+    background-color: #2196F3;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+    font-size: 0.95em;
+}
+
+.stats p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stats span {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* ===================== INFO PANEL ===================== */
+.info-panel {
+    width: 100%;
+    background: rgba(255, 152, 0, 0.05);
+    border-left: 5px solid #ff9800;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.info-panel h3 {
+    color: #ff9800;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.info-panel ul {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.info-panel li {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #e0e0e0;
+    padding-left: 10px;
+    border-left: 2px solid #ff9800;
+    padding-left: 15px;
+}
+
+.info-panel strong {
+    color: #4CAF50;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #4CAF50;
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* ===================== RESPONSIVE DESIGN ===================== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 0.85em;
+    }
+
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group {
+        justify-content: center;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        text-align: center;
+    }
+
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .info-panel {
+        font-size: 0.9em;
+    }
+
+    .info-panel li {
+        font-size: 0.85em;
+    }
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+    }
+}
+
+h1 {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* ===================== SCROLLBAR STYLING ===================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 8, 20, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #45a049;
+}

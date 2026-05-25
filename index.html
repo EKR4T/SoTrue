@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoTrue: Mini Solar System Simulator - Graphics Pipeline Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Mini Solar System Simulator</h1>
+            <p class="subtitle">Graphics Pipeline Demonstration: Application → Geometry → Rasterization</p>
+        </header>
+
+        <main>
+                <div class="canvas-wrap" id="canvasWrap">
+                    <div class="toolbar" aria-hidden="true">
+                        <button id="pausePlayBtn" class="icon-btn" title="Pause/Play">⏸</button>
+                        <button id="resetBtn" class="icon-btn" title="Reset">🔄</button>
+                        <button id="toggleOrbitsBtn" class="icon-btn" title="Toggle Orbits">👁</button>
+                        <button id="fullScreenBtn" class="icon-btn" title="Fullscreen">⛶</button>
+                    </div>
+
+                    <!-- Canvas Element for Rendering -->
+                    <canvas id="solarSystemCanvas" width="1000" height="800"></canvas>
+
+                    <!-- Labels overlay / tooltip -->
+                        <div id="labelsOverlay" class="labels-overlay" aria-hidden="true">
+                            <div id="tooltip" class="label" style="display:none; position:absolute; pointer-events:none;"></div>
+                        </div>
+                </div>
+
+                <!-- Control Panel (stats only) -->
+                <div class="control-panel">
+                    <div class="stats">
+                        <p>Time: <span id="timeDisplay">0</span> days</p>
+                        <p>Planet Speed: <span id="speedDisplay">1</span>x</p>
+                    </div>
+                </div>
+
+            <!-- Info Panel -->
+            <div class="info-panel">
+                <h3>📊 Graphics Pipeline Stages:</h3>
+                <ul>
+                    <li><strong>APPLICATION STAGE:</strong> Physics calculations, orbital mechanics, transformations</li>
+                    <li><strong>GEOMETRY STAGE:</strong> Vertex generation for circles, coordinate transformations</li>
+                    <li><strong>RASTERIZATION STAGE:</strong> Canvas rendering, pixel drawing with gradients</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>Project: Mini Solar System Simulator | Created with HTML5 Canvas + Graphics Pipeline</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
